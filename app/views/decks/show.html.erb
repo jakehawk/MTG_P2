@@ -1,0 +1,19 @@
+<h1><%= @deck.name %></h1>
+by: <%= @deck.user.username %>
+
+<h2>Cards</h2>
+<hr>
+<ul>
+	<% @deck.spells.each do |card| %>
+		<li>
+			<strong><%= "#{card.name}" %></strong>
+			<%= "#{card.mana_cost}" %><br>
+			<img src="<%= card.img_url %>">
+		</li>
+	<% end %>
+</ul>
+<hr>
+<% if current_user.id == @deck.user.id %>
+	<%= link_to "Edit", edit_deck_path(@deck)%>	
+<% end %>
+

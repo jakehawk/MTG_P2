@@ -1,0 +1,24 @@
+<h1><%= @deck.name %></h1>
+
+New Card:
+<%= form_for [@deck, @spell], :action=>"add_spell" do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit "Add Card" %>
+<% end %>
+
+<hr>
+<%= @info %>
+<hr>
+
+Current Deck:
+<ul>
+	<% @deck.spells.each do |card| %>
+		<li>
+			<strong><%= "#{card.name}" %></strong>
+			<%= "#{card.mana_cost}" %><br>
+			<img src="<%= card.img_url %>">
+		</li>
+	<% end %>
+</ul>
+
+
