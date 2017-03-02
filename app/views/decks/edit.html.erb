@@ -3,7 +3,7 @@
 <%= link_to "Done editing", deck_path(@deck) %>
 
 <br>
-New Card:
+New Card: <span class='qty'>Qty:</span>
 <%= form_for [@deck, @spell], :action=>"add_spell" do |f| %>
 	<%= f.text_field :name %>
 	<%= number_field :qty, :qty, in: 1..4 %>
