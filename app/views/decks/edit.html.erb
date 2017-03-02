@@ -3,47 +3,87 @@
 <%= link_to "Done Editing", deck_path(@deck) %>
 
 <br>
-New Card:
+New Card:                     Qty
 <%= form_for [@deck, @spell], :action=>"add_spell" do |f| %>
 	<%= f.text_field :name %>
 	<%= number_field :qty, :qty, in: 1..4 %>
 	<%= f.submit "Add Card" %>
 <% end %>
 
-<h3>Current Deck:</h3>
-<hr>
-<h4>Creatures:</h4>
-<% @deck.spells.each_slice(4).each do |row| %>
-	<div class="row">
-		<% row.each do |spell| %>
-			<div class="col-md-3">
-				<% types = spell.card_type.split %>
-				<% if types.include?("Creature") %>
-					<strong><%=spell.name%></strong>
-					<div class="delete"> <%= link_to "Delete", deck_path(@deck, @spell), method: :delete, data: {confirm: "Are you sure you want to delete this spell?"} %> </div>
-					<img src="<%= spell.img_url %>" /> 
-					<% spell.show = true %>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+<% creatures = [] %>
+<% planeswalkers = [] %>
+<% spells = [] %>
+<% artifacts = [] %>
+<% land = [] %>
+<% side = [] %>
+
+<% @deck.spells.each do |spell| %>
+	<% types = spell.card_type.split %>
+	<% if spell.side %>
+		<% side << spell %>
+	<% elsif types.include?("Creature") %>
+		<% creatures << spell %>
+	<% elsif types.include?("Planeswalker") %>
+		<% planeswalkers << spell %>
+	<% elsif types.include?("Instant") || types.include?("Sorcery") %>
+		<% spells << spell %>
+	<% elsif types.include?("Artifact") %>
+		<% artifact << spell %>
+	<% elsif types.include?("Land") %> 
+		<% land << spell %>
+	<% end %>
 <% end %>
 
-<h4>Spells: </h4>
-<% @deck.spells.each_slice(4).each do |row| %>
-	<div class="row">
-		<% row.each do |spell| %>
-			<div class="col-md-3">
-				<% types = spell.card_type.split %>
-				<% if types.include?("Instant") || types.include?("Sorcery") %>
+
+<h3>Current Deck:</h3>
+<hr>
+<% if creatures.length > 0 %>
+	<h4>Creatures:</h4>
+	<% creatures.each_slice(4).each do |row| %>
+		<div class="row">
+			<% row.each do |spell| %>
+				<div class="col-md-3">
 					<strong><%=spell.name%></strong>
 					<div class="delete"> <%= link_to "Delete", deck_path(@deck, @spell), method: :delete, data: {confirm: "Are you sure you want to delete this spell?"} %> </div>
 					<img src="<%= spell.img_url %>" /> 
 					<% spell.show = true %>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 <% end %>
+
+<% if planeswalkers.length > 0 %>
+	<h4>Planeswalkers:</h4>
+	<% planeswalkers.each_slice(4).each do |row| %>
+		<div class="row">
+			<% row.each do |spell| %>
+				<div class="col-md-3">
+					<strong><%=spell.name%></strong>
+					<div class="delete"> <%= link_to "Delete", deck_path(@deck, @spell), method: :delete, data: {confirm: "Are you sure you want to delete this spell?"} %> </div>
+					<img src="<%= spell.img_url %>" /> 
+					<% spell.show = true %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
+
+<% if spells.length > 0 %>
+	<h4>Spells:</h4>
+	<% spells.each_slice(4).each do |row| %>
+		<div class="row">
+			<% row.each do |spell| %>
+				<div class="col-md-3">
+					<strong><%=spell.name%></strong>
+					<div class="delete"> <%= link_to "Delete", deck_path(@deck, @spell), method: :delete, data: {confirm: "Are you sure you want to delete this spell?"} %> </div>
+					<img src="<%= spell.img_url %>" /> 
+					<% spell.show = true %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
+
 
 

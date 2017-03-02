@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302201105) do
+ActiveRecord::Schema.define(version: 20170302205059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170302201105) do
     t.datetime "updated_at",                 null: false
     t.boolean  "show",       default: false
     t.string   "card_type"
+    t.boolean  "side",       default: false
     t.index ["deck_id"], name: "index_spells_on_deck_id", using: :btree
   end
 
