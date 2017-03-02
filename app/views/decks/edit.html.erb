@@ -1,24 +1,25 @@
 <h1><%= @deck.name %></h1>
 
+<%= link_to "Done Editing", deck_path(@deck) %>
+
+<br>
 New Card:
 <%= form_for [@deck, @spell], :action=>"add_spell" do |f| %>
 	<%= f.text_field :name %>
 	<%= f.submit "Add Card" %>
 <% end %>
 
-<hr>
-<%= @info %>
-<hr>
+Current Deck:<br>
+<% @deck.spells.each_slice(4).each do |row| %>
+	<div class="row">
+		<% row.each do |spell| %>
+			<div class="col-md-3">
+				<h4><%=spell.name%></h4>
+				<img src="<%= spell.img_url %>" /> 
+			</div>
+		<% end %>
+	</div>
+<% end %>
 
-Current Deck:
-<ul>
-	<% @deck.spells.each do |card| %>
-		<li>
-			<strong><%= "#{card.name}" %></strong>
-			<%= "#{card.mana_cost}" %><br>
-			<img src="<%= card.img_url %>">
-		</li>
-	<% end %>
-</ul>
 
 

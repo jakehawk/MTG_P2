@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	end
 
 	resources :decks do
-		resources :cards
+		resources :spells
 	end
 
 	delete '/logout' => 'sessions#destroy', as: :logout

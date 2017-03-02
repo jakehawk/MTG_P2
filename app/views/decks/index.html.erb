@@ -1,5 +1,10 @@
+<h2>Created Decks</h2>
 <ul>
   <% @decks.each do |d| %>
     <li><%= link_to d.name, deck_path(d) %></li>
   <% end %>
 </ul>
+
+<% if current_user %>
+	<%= link_to "New Deck", new_user_deck_path(current_user) %>
+<% end %>

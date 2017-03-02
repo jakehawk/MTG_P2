@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Deck.create(user_id: 1, name: 'Janky McJank')
-Card.create(deck_id: 1, name: 'Lightning Bolt', mana_cost: "{R}", img_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=397722&type=card")
+Spell.create(deck_id: 1, name: 'Lightning Bolt', mana_cost: "{R}", img_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=397722&type=card")

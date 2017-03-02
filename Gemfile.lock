@@ -139,6 +139,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rename (1.0.2)
+      rails (>= 3.0.0)
     representable (3.0.3)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -203,6 +205,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rename
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
