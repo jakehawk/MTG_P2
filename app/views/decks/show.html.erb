@@ -20,5 +20,7 @@ by: <%= @deck.user.username %>
 	</div>
 <% end %>
 <hr>
-	<%= link_to "Delete", deck_path, method: :delete, data: {confirm: "Are you sure you want to delete this deck?"}%>	
+	<% if current_user.id == @deck.user.id %>
+		<%= link_to "Delete", deck_path, method: :delete, data: {confirm: "Are you sure you want to delete this deck?"}%>	
+	<% end %>
 <hr>
