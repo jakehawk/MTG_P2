@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302194419) do
+ActiveRecord::Schema.define(version: 20170302201105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 20170302194419) do
     t.string   "name"
     t.string   "mana_cost"
     t.string   "img_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "type"
-    t.boolean  "shown"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "show",       default: false
+    t.string   "card_type"
     t.index ["deck_id"], name: "index_spells_on_deck_id", using: :btree
   end
 
