@@ -27,7 +27,9 @@ class SpellsController < ApplicationController
       @spell.img_url = @options.last.image_url
       @spell.name = @options.last.name
       @spell.card_type = @options.last.type
+      @deck.num_cards = @deck.num_cards + 1
       @spell.save
+      @deck.save
     end
 
     if @spell.save
@@ -42,7 +44,9 @@ class SpellsController < ApplicationController
   end
 
   def destroy
-  	@spell = Spell.find(params[:id])
+    @deck = Deck.find(params[:deck_id])
+    @deck.num_cards = @deck.num_cards - 1
+  	@spell = @deck.spells.find(params[:id])
   	@spell.destroy
   	redirect_to edit_deck_path(@deck)
   end
