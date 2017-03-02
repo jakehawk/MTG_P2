@@ -26,6 +26,7 @@ class SpellsController < ApplicationController
       @spell.mana_cost = @options.last.mana_cost
       @spell.img_url = @options.last.image_url
       @spell.name = @options.last.name
+      @spell.type = @options.last.
       @spell.save
     end
 

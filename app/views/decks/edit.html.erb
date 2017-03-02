@@ -16,7 +16,7 @@ Current Deck:<br>
 		<% row.each do |spell| %>
 			<div class="col-md-3">
 				<strong><%=spell.name%></strong>
-				<!-- <div class="delete"> <%#= link_to "Delete", spell_path(@spell), method: :delete, data: {confirm: "Are you sure you want to delete this spell?"} %> </div> -->
+				<div class="delete"> <%= link_to "Delete", deck_path(@deck), method: :delete, data: {confirm: "Are you sure you want to delete this spell?"} %> </div>
 				<img src="<%= spell.img_url %>" /> 
 			</div>
 		<% end %>
