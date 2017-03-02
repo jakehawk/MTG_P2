@@ -16,15 +16,19 @@ class SpellsController < ApplicationController
 
   def create
     @deck = Deck.find(params[:deck_id])
-    @spell = @deck.spells.new(spell_params)
-    @spell.deck = @deck
-    api_name = spell_params.first[1]
+    api_name = params[:spell][:name]
+    qty = params[:qty][:qty].to_i
+    #Using gem to fetch card information based on user input
     @options = MTG::Card.where(name: '"' + api_name + '"').all
-    
+    (1..qty).each do |trash|
+      @spell = @deck.spells.new(spell_params)
+      @spell.deck = @deck
+      @spell.mana_cost = @options.last.mana_cost
+      @spell.img_url = @options.last.image_url
+      @spell.name = @options.last.name
+      @spell.save
+    end
 
-    @spell.mana_cost = @options.last.mana_cost
-    @spell.img_url = @options.last.image_url
-    @spell.name = @options.last.name
     if @spell.save
     	redirect_to edit_deck_path(@deck)
     end
@@ -39,7 +43,7 @@ class SpellsController < ApplicationController
   def destroy
   	@spell = Spell.find(params[:id])
   	@spell.destroy
-  	redirect_to deck_path(@deck)
+  	redirect_to edit_deck_path(@deck)
   end
 
   private
