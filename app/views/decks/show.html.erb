@@ -27,7 +27,7 @@ by: <%= @deck.user.username %>
 	<% elsif types.include?("Instant") || types.include?("Sorcery") %>
 		<% spells << spell %>
 	<% elsif types.include?("Artifact") %>
-		<% artifact << spell %>
+		<% artifacts << spell %>
 	<% elsif types.include?("Land") %> 
 		<% land << spell %>
 	<% end %>
