@@ -1,7 +1,7 @@
 <h2>Created Decks</h2>
 <ul>
   <% @decks.each do |d| %>
-    <li><%= link_to d.name, deck_path(d) %></li>
+    <li><h4><%= link_to "#{d.name}(#{d.num_cards})", deck_path(d) %></h4></li>
   <% end %>
 </ul>
 

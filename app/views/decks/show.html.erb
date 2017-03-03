@@ -1,4 +1,4 @@
-<h1><%= @deck.name %></h1>
+<h1><%= "#{@deck.name}(#{@deck.num_cards})" %></h1>
 by: <%= @deck.user.username %>
 <% if current_user %>
 	<% if current_user.id == @deck.user.id %>
@@ -35,7 +35,7 @@ by: <%= @deck.user.username %>
 
 
 <% if creatures.length > 0 %>
-	<h4>Creatures:</h4>
+	<h4>Creatures(<%= creatures.length %>):</h4>
 	<% creatures.each_slice(4).each do |row| %>
 		<div class="row">
 			<% row.each do |spell| %>
@@ -50,7 +50,7 @@ by: <%= @deck.user.username %>
 <% end %>
 
 <% if planeswalkers.length > 0 %>
-	<h4>Planeswalkers:</h4>
+	<h4>Planeswalkers(<%= planeswalkers.length %>):</h4>
 	<% planeswalkers.each_slice(4).each do |row| %>
 		<div class="row">
 			<% row.each do |spell| %>
@@ -65,7 +65,7 @@ by: <%= @deck.user.username %>
 <% end %>
 
 <% if spells.length > 0 %>
-	<h4>Spells:</h4>
+	<h4>Spells(<%= spells.length %>):</h4>
 	<% spells.each_slice(4).each do |row| %>
 		<div class="row">
 			<% row.each do |spell| %>
@@ -81,7 +81,7 @@ by: <%= @deck.user.username %>
 
 
 <% if artifacts.length > 0 %>
-	<h4>Artifacts:</h4>
+	<h4>Artifacts(<%= artifacts.length %>):</h4>
 	<% artifacts.each_slice(4).each do |row| %>
 		<div class="row">
 			<% row.each do |spell| %>
@@ -96,23 +96,8 @@ by: <%= @deck.user.username %>
 <% end %>
 
 <% if land.length > 0 %>
-	<h4>Land:</h4>
+	<h4>Land(<%= lands.length %>):</h4>
 	<% land.each_slice(4).each do |row| %>
-		<div class="row">
-			<% row.each do |spell| %>
-				<div class="col-md-3">
-					<strong><%=spell.name%></strong>
-					<img src="<%= spell.img_url %>" /> 
-					<% spell.show = true %>
-				</div>
-			<% end %>
-		</div>
-	<% end %>
-<% end %>
-
-<% if side.length > 0 %>
-	<h4>Side:</h4>
-	<% side.each_slice(4).each do |row| %>
 		<div class="row">
 			<% row.each do |spell| %>
 				<div class="col-md-3">

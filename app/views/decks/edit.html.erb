@@ -1,11 +1,11 @@
-<h1><%= @deck.name %></h1>
+<h1><%= "#{@deck.name}(#{@deck.num_cards})" %></h1>
 
 <%= link_to "Done editing", deck_path(@deck) %>
 
 <br>
 New Card: <span class='qty'>Qty:</span>
 <%= form_for [@deck, @spell], :action=>"add_spell" do |f| %>
-	<%= f.text_field :name %>
+	<%= f.text_field :name, :autofocus => true %>
 	<%= number_field :qty, :qty, in: 1..4 %>
 	<%= f.submit "Add Card" %>
 <% end %>
@@ -34,7 +34,7 @@ New Card: <span class='qty'>Qty:</span>
 <% end %>
 
 
-<h3>Current Deck(<%= @deck.num_cards %>):</h3>
+
 <hr>
 <% if creatures.length > 0 %>
 	<h4>Creatures(<%= creatures.length %>):</h4>
