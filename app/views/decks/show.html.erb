@@ -96,7 +96,7 @@ by: <%= @deck.user.username %>
 <% end %>
 
 <% if land.length > 0 %>
-	<h4>Land(<%= lands.length %>):</h4>
+	<h4>Land(<%= land.length %>):</h4>
 	<% land.each_slice(4).each do |row| %>
 		<div class="row">
 			<% row.each do |spell| %>
