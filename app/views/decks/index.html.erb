@@ -2,6 +2,7 @@
 <ul>
   <% @decks.each do |d| %>
     <li><h4><%= link_to "#{d.name}(#{d.num_cards})", deck_path(d) %></h4></li>
+    <ul><li>created by:<%= d.user.username %> </li></ul>
   <% end %>
 </ul>
 
