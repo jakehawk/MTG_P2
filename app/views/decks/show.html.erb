@@ -1,4 +1,4 @@
-<h1><%= "#{@deck.name}(#{@deck.num_cards})" %></h1>
+<h1><%= "#{@deck.name}" %></h1>
 by: <%= @deck.user.username %>
 <% if current_user %>
 	<% if current_user.id == @deck.user.id %>
